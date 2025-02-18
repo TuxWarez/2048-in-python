@@ -112,10 +112,3 @@ while True:
     main()
     if input("Do you want to play another game? [y/N] ")!="y":
         break
-
-
-while True:
-    grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
-    main()
-    if input("Do you want to play another game? [y/N] ")!="y":
-        break
