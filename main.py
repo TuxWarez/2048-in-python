@@ -1,6 +1,7 @@
 #
 # TO-DO:
 # fix play_move_(direction) functions
+# fix check_if_stuck function, it shouldnt return always True, and 104th line saying if not flag is temporary for that reason
 #
 
 import random
@@ -8,6 +9,7 @@ import os
 
 grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 ALLOWED_MOVES = ['w', 'a', 's', 'd']
+flag = False
 
 def print_grid():
     for item in grid:
@@ -63,19 +65,19 @@ def check_if_stuck():
     x = 0
     temp_grid = grid
     play_move_up(temp_grid)
-    if temp_grid = grid:
+    if temp_grid == grid:
         x += 1
     temp_grid = grid
     play_move_down(temp_grid)
-    if temp_grid = grid:
+    if temp_grid == grid:
         x += 1
     temp_grid = grid
     play_move_left(temp_grid)
-    if temp_grid = grid:
+    if temp_grid == grid:
         x += 1
     temp_grid = grid
     play_move_right(temp_grid)
-    if temp_grid = grid:
+    if temp_grid == grid:
         x += 1
     if x == 4:
         return True
@@ -99,11 +101,18 @@ def main():
         os.system('clear')
         add_item()
         flag = check_if_stuck
-        if flag:
+        if not flag:
             print("Game over")
             break
         print_grid()
         play_input()
+
+while True:
+    grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+    main()
+    if input("Do you want to play another game? [y/N] ")!="y":
+        break
+
 
 while True:
     grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
