@@ -7,7 +7,6 @@
 import random
 import os
 
-grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 ALLOWED_MOVES = ['w', 'a', 's', 'd']
 flag = False
 
