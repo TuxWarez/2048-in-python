@@ -121,8 +121,7 @@ def play_input():
 def main():
     while True:
         clear_screen()
-        for i in range(2):
-            manual_add_item()
+        add_item()
         flag = check_if_stuck
         if not flag:
             print("Game over")
