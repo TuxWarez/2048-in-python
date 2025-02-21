@@ -15,7 +15,9 @@ def print_grid():
         for i in item:
             print(f"{i}\t", end='')
         print()
-        print()
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def check_if_free(num):
     x = random.randint(0, 3)
@@ -32,6 +34,11 @@ def add_item():
         else:
             check_if_free(4)
 
+def manual_add_item():
+    xy = input("insert a character in xcoord,ycoord format: ")
+    xy = [int(i) - 1 for i in xy.split(',')]
+    grid[xy[0]][xy[1]] = 2
+
 def play_move_up(arr):
     for i in range(4):
         while True:
@@ -46,24 +53,35 @@ def play_move_up(arr):
 def play_move_down(arr):
     for i in range(4):
         while True:
+            temp_arr = arr
             for j in range(3):
                 if arr[j][i] == arr[j + 1][i] or arr[j + 1][i] == 0 or arr[j][i] == 0:
                     arr[j + 1][i] += arr[j][i]
                     arr[j][i] = 0
+            if temp_arr == arr:
+                break
 
 def play_move_right(arr):
     for i in range(4):
-        for j in range(3):
-            if arr[i][j] == arr[i][j + 1] or arr[i][j + 1] == 0 or arr[i][j] == 0:
-                arr[i][j + 1] += arr[i][j]
-                arr[i][j] = 0
+        while True:
+            temp_arr = arr
+            for j in range(3):
+                if arr[i][j] == arr[i][j + 1] or arr[i][j + 1] == 0 or arr[i][j] == 0:
+                    arr[i][j + 1] += arr[i][j]
+                    arr[i][j] = 0
+            if temp_arr == arr:
+                break
 
 def play_move_left(arr):
     for i in range(4):
-        for j in range(3):
-            if arr[i][j] == arr[i][j + 1] or arr[i][j + 1] == 0 or arr[i][j] == 0:
-                arr[i][j] += arr[i][j + 1]
-                arr[i][j + 1] = 0
+        while True:
+            temp_arr = arr
+            for j in range(3):
+                if arr[i][j] == arr[i][j + 1] or arr[i][j + 1] == 0 or arr[i][j] == 0:
+                    arr[i][j] += arr[i][j + 1]
+                    arr[i][j + 1] = 0
+            if temp_arr == arr:
+                break
 
 def check_if_stuck():
     x = 0
@@ -102,8 +120,9 @@ def play_input():
 
 def main():
     while True:
-      # os.system('clear')
-        add_item()
+        clear_screen()
+        for i in range(2):
+            manual_add_item()
         flag = check_if_stuck
         if not flag:
             print("Game over")
