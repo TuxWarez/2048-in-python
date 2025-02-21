@@ -34,17 +34,22 @@ def add_item():
 
 def play_move_up(arr):
     for i in range(4):
-        for j in range(3):
-            if arr[j][i] == arr[j + 1][i] or arr[j + 1][i] == 0 or arr[j][i] == 0:
-                arr[j][i] += arr[j + 1][i]
-                arr[j + 1][i] = 0
+        while True:
+            temp_arr = arr
+            for j in range(3):
+                if arr[j][i] == arr[j + 1][i] or arr[j + 1][i] == 0 or arr[j][i] == 0:
+                    arr[j][i] += arr[j + 1][i]
+                    arr[j + 1][i] = 0
+            if arr == temp_arr:
+                break
 
 def play_move_down(arr):
     for i in range(4):
-        for j in range(3):
-            if arr[j][i] == arr[j + 1][i] or arr[j + 1][i] == 0 or arr[j][i] == 0:
-                arr[j + 1][i] += arr[j][i]
-                arr[j][i] = 0
+        while True:
+            for j in range(3):
+                if arr[j][i] == arr[j + 1][i] or arr[j + 1][i] == 0 or arr[j][i] == 0:
+                    arr[j + 1][i] += arr[j][i]
+                    arr[j][i] = 0
 
 def play_move_right(arr):
     for i in range(4):
@@ -97,7 +102,7 @@ def play_input():
 
 def main():
     while True:
-        os.system('clear')
+      # os.system('clear')
         add_item()
         flag = check_if_stuck
         if not flag:
